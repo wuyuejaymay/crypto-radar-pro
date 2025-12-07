@@ -7,10 +7,10 @@ from datetime import datetime
 st.set_page_config(page_title="AI加密雷达 Pro", layout="wide")
 st.title("AI加密雷达 Pro – Grok 4 实时预测")
 
-if st.secrets.TEST_MODE:
-    st.success("免费测试模式（改 secrets.toml 可开启收费）")
-else:
-    st.warning("正式收费模式")
+try:
+    TEST_MODE = st.secrets["TEST_MODE"]
+except KeyError:
+    TEST_MODE = True
 
 coins = ["BTC","ETH","SOL","DOGE","PEPE","WIF","TON","BNB","XRP"]
 coin = st.selectbox("选择币种", coins)
